@@ -1,112 +1,73 @@
-# Before you begin
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+</p>
 
-This is a template app to help developers get started building for the monday AI Assistant. It's a preview, so things may not work as expected. This code will eventually live in the [official monday example apps repo.](https://github.com/mondaycom/welcome-apps/)
+[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-If you're having problems, there are some common troubleshooting steps at the bottom of the page. 
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
+<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
+<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
+    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-# About the app
+## Description
 
-This is an example app with three basic apps inside it. It updates data on a monday board from output from GPT3. 
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-This sample demonstrates the following concepts: 
-- Integrates with OpenAI's GPT3
-- Uses monday's client-side SDK
-- Uses monday's React component library
-- Integrates with monday GraphQL API
-- Renders an app in a monday iframe
-- Authentication between the client-side app and backend
+## Installation
 
-# Setup
-
-To connect this app to monday, follow the instructions in monday's technical docs: [AI Assistant Quickstart](https://developer.monday.com/apps/docs/quickstart-for-ai-assistant) 
-
-
-# Learn more
-
-## Learn more about the monday app marketplace
-
-Want to join the monday app marketplace? [Learn more and submit your app here!](https://monday.com/appdeveloper)
-
-Want to build more monday apps? [Check out our docs.](https://developer.monday.com/apps/docs/intro)
-
-## Join the AI hackathon
-
-Sign up for the AI hackathon in June 2023 and build the next top monday app! [Sign up here.](https://lablab.ai/event/monday-ai-app-hackathon)
-
-## Join the community
-
-[Sign up for the monday community here.](https://community.monday.com)
-
-# Exploring the example code
-
-## Example apps
-
-The sample code contains multiple example layouts that you can build your app from. Check the out in the `src/app/examples` folder: 
-- [Livestream example](https://github.com/yuhgto/monday-ai-prompt-template/blob/main/src/examples/livestream-example/final-code.tsx): Fullstack example used in our quickstart
-- [Context explorer](https://github.com/yuhgto/monday-ai-prompt-template/blob/main/src/examples/context-explorer/context-explorer-example.js): example that can be added to any AI assistant feature to explore the context and demonstrates different SDK capabilities. 
-- [Basic prompt layout](https://github.com/yuhgto/monday-ai-prompt-template/blob/main/src/examples/basic-prompt-layout/prompt-layout.tsx): Base layout to send an input from the user to a backend API
-
-## Reusable elements
-
-This repo contains components and hooks that you can reuse in your own apps: 
-- [Example layouts](https://github.com/yuhgto/monday-ai-prompt-template/tree/main/src/examples): Feel free to use any of the examples to build your app
-- [hooks](https://github.com/yuhgto/monday-ai-prompt-template/tree/main/src/hooks) folder:
-    - [useBoardColumns](https://github.com/yuhgto/monday-ai-prompt-template/blob/main/src/hooks/useBoardColumns.ts) and [useBoardGroups](https://github.com/yuhgto/monday-ai-prompt-template/blob/main/src/hooks/useBoardGroups.ts) hooks:_to retrieve the column and group structure from the monday API and use it in your app_
-    - [useAiApi](https://github.com/yuhgto/monday-ai-prompt-template/blob/main/src/hooks/useAiApi.ts): _Prebuilt hook to call your AI API (i.e. the app backend)_
-    - [useFetch](https://github.com/yuhgto/monday-ai-prompt-template/blob/main/src/hooks/useFetch.ts): _HTTP Fetch as a hook_
-- [components](https://github.com/yuhgto/monday-ai-prompt-template/tree/main/src/components) folder:
-    - [context provider](https://github.com/yuhgto/monday-ai-prompt-template/tree/main/src/components/context-provider): _Context provider component to retrieve monday app context and pass it to your app_
-    - [ai footer](https://github.com/yuhgto/monday-ai-prompt-template/tree/main/src/components/ai-footer): _Generic footer with a disclaimer message_
-    - [text input with send](https://github.com/yuhgto/monday-ai-prompt-template/tree/main/src/components/text-input-with-send): _Text input component in the monday style_
-    - [text input with tags](https://github.com/yuhgto/monday-ai-prompt-template/tree/main/src/components/text-input-with-tags): _Text input component that supports tagging_
-
-## Troubleshooting
-
-Here are some common problems and how to solve them: 
-
-**You cannot see the AI Assistant in your monday account:**
-
-An account admin will need to enable the feature by following these steps: [Enable AI Assistant beta](https://developer.monday.com/apps/docs/quickstart-for-ai-assistant#enable-the-ai-assistant-beta)
-
-**"Permission denied" error when calling the monday API:**
-
-Your app doesn't have the right permissions. Depending on which example you're using, you'll need different permissions. 
-
-To solve, add all the relevant permission scopes to your monday app. Do that with these instructions: [Add permission scopes](https://developer.monday.com/apps/docs/manage#define-app-permission-scopes)
-
-If you're not sure which scopes you need, add them all during testing. You can remove the unnecessary ones later. 
-
-**_StaticGenBailoutError_ thrown when calling app backend:**
-
-You need to tell NextJS to compile the route statically. Uncomment line 7 in `src/app/api/openai/prompts/route.ts`:
-```
-export const dynamic = 'force-static'
+```bash
+$ npm install
 ```
 
-**You're on a corporate VPN and get a self-signed certificate error from NodeJS:**
+## Running the app
 
-You need to tell NodeJS to allow insecure connections in your app. Add the following line to your .env file: 
+```bash
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
 ```
-NODE_TLS_REJECT_UNAUTHORIZED=0
+
+## Test
+
+```bash
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov
 ```
 
-**You're using HTTP (not HTTPS) and always get authentication errors from your backend:**
+## Support
 
-Disable the authentication step. Set `DISABLE_AUTH` to true in line 9 of `src/app/api/openai/prompts/route.ts`. Just don't forget to re-enable it before moving your app to production!
-```
-const DISABLE_AUTH = true;
-```
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-**Your ngrok account isn't working and you need to use localhost:**
+## Stay in touch
 
-If you're using localhost, your app will connect on using HTTP (not HTTP) and you'll probably get most of the above errors. Try all the solutions above, and you should be good to go!
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-**You made a change to your app's config and it's not updating:**
+## License
 
-First try refreshing your browser. 
-
-If that doesn't work, you may have made the change on a different version of your app. Check that you're using the right version of your app. For more info on versioning, check out our docs: [App Versioning Docs](https://developer.monday.com/apps/docs/versioning)
-
-**Something else:**
-
-Drop a message in the hackathon Discord channel!
+Nest is [MIT licensed](LICENSE).
