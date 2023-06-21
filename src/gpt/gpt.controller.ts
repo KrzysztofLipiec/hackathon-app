@@ -3,6 +3,7 @@ import { HandleGptError } from './handle-gpt.error';
 import { GptService } from './gpt.service';
 import { SentimentalAnalysisResponse } from './dto/SentimentalAnalysisResponse';
 import { SentimentalAnalysisRequest } from './dto/SentimentalAnalysisRequest';
+import { AssessmentRequest } from './dto/AssessmentRequest';
 
 @Controller('/gpt')
 export class GptController {
@@ -10,6 +11,13 @@ export class GptController {
         private gptService: GptService,
     ) {
 
+    }
+
+    @Post('get-assessment')
+    @HandleGptError()
+    public async generateAssessment(@Res() res, @Body() assessmentRequest: AssessmentRequest) {
+        const response = await this.gptService.generateAssessment(assessmentRequest.user, assessmentRequest.data);
+        return res.status(200).json(response);
     }
 
     @Post('sentiment-analysis')
@@ -32,7 +40,7 @@ export class GptController {
     private async buildItemResponse(item: SentimentalAnalysisRequest): Promise<SentimentalAnalysisResponse> {
         return {
             id: item.id,
-            ...(await this.gptService.generateSentimentAnalysis(item.review, item.updates || [])),
+            ...(await this.gptService.generateSentimentAnalysis(item.review, item.updates)),
         };
     }
 }

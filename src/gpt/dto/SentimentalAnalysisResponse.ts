@@ -1,5 +1,5 @@
-import { IProcessedGptResponse } from '../interfaces/IProcessedGptResponse';
+import { IProcessedSentimentAnalysisResponse } from '../interfaces/IProcessedSentimentAnalysisResponse';
 
-export interface SentimentalAnalysisResponse extends IProcessedGptResponse {
+export interface SentimentalAnalysisResponse extends IProcessedSentimentAnalysisResponse {
     id: string;
 }
