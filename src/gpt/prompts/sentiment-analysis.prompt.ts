@@ -5,18 +5,18 @@ export class SentimentAnalysisPrompt extends AbstractPrompt {
         return `On a scale of 1 to 5, 1 being unhappy and 5 being very happy,
     what would be the hapiness of the customer based on their review and updates?
     Updates are sorted from the eldest to the newest, please consider whole updating process, if problem was solved, if communication was clear for evaluation.
-    Also what is the main reason for the score based on the review?
+    Also what is the main reason for the score based on the review splited by '-' with what would be recommended solution for the customer?
     
     Review: The product helped me a lot, and solved all of my problems! Thanks!
     Updates: no updates
-    Result: 5 - The user's need were fulfilled completely.
+    Result: 5 - The user's need were fulfilled completely - Continue with the good work. The user is satisfied.
     
     Review: It's a very good product. It's missing a few functionalities, but we can use it.
     Updates: 
         - could you tell us what is missing?
         - yes sure, we would need to add suffix at the end of the each users name.
         - thanks for your update, we will deliver it soon.
-    Result: 4 - The user is satisfied with the product, but feels it might have more features.
+    Result: 4 - The user is satisfied with the product, but feels it might have more features. - There are some new features that the user would like to see in the product.
     
     Review: It was ok, I guess. Didn't know how to do some of the stuff.
     Updates: 
@@ -25,19 +25,19 @@ export class SentimentAnalysisPrompt extends AbstractPrompt {
         - I dont know how to change some settings.
         - you would need to click cog on the right top corner.
         - found it thank you
-    Result: 3 - The user did not understand how to use the product, so their experience could not exactly be classified as positive, but we were able to slightly guide him to move forward.
+    Result: 3 - The user did not understand how to use the product, so their experience could not exactly be classified as positive, but we were able to slightly guide him to move forward. - We should add more tutorials to the product.
     
     Review: It worked for some time and then crashed. Haven't been able to use it since then.
     Update: 
         - We were able to see logs of this accident but we dont see any issue
         - It just stopped
         - Please message us if it will happen again
-    Result: 2 - While having a good start with the app, after breaking the user could not use it anymore but the problem is not resolved.
+    Result: 2 - While having a good start with the app, after breaking the user could not use it anymore but the problem is not resolved. - We should investigate the issue and fix it.
     
     Review: It doesn't work at all for me.
     Update: 
         - no updates
-    Result: 1 - The user did not get any expected results from the product and no action from updates were taken.
+    Result: 1 - The user did not get any expected results from the product and no action from updates were taken. - We should take an action as soon as possible and contact customer to resolve the issue.
     
     Review: ${data.review}
     Updates: 

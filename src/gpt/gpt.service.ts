@@ -22,6 +22,7 @@ export class GptService {
         const prompt = this.generatePrompt(review, updates);
         const completion = await this.openai.createCompletion(
             {
+                max_tokens: 100,
                 model: GptService.model,
                 prompt,
                 temperature: 0.6,
@@ -32,9 +33,7 @@ export class GptService {
     }
 
     public async generateAssessment(user: string, data: any): Promise<string> {
-
         const prompt = this.generateAssessmentPrompt(user, AssessmentDataMapper.map(data));
-        console.log(prompt);
         const completion = await this.openai.createCompletion(
             {
                 max_tokens: 1000,
@@ -44,7 +43,6 @@ export class GptService {
             },
         );
 
-        console.log((completion.data.choices || [])[0].text || '');
         return (completion.data.choices || [])[0].text || '';
     }
 

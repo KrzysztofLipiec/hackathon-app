@@ -1,16 +1,35 @@
-import { Body, Controller, Post, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Query, Res } from '@nestjs/common';
 import { HandleGptError } from './handle-gpt.error';
 import { GptService } from './gpt.service';
 import { SentimentalAnalysisResponse } from './dto/SentimentalAnalysisResponse';
 import { SentimentalAnalysisRequest } from './dto/SentimentalAnalysisRequest';
 import { AssessmentRequest } from './dto/AssessmentRequest';
+import { MongoDbService } from '../db/mongo/mongoDb.service';
 
 @Controller('/gpt')
 export class GptController {
+
     constructor(
         private gptService: GptService,
+        private mongoDbService: MongoDbService,
     ) {
 
+    }
+
+    @Get('config')
+    public async getConfig(@Query('workspace') workspace: string, @Query('name') name: string) {
+        console.log('workspace', workspace);
+        return this.mongoDbService.getRecord(workspace, name);
+    }
+
+    @Post('config')
+    public async setConfig(@Body() { name, value, workspace }: { name: string, value: string, workspace: string }) {
+        return this.mongoDbService.addRecord(workspace, name, value);
+    }
+
+    @Delete('config')
+    public async deleteConfig(@Body() { name, value, workspace }: { name: string, value: string, workspace: string }) {
+        return this.mongoDbService.removeRecord(workspace, name, value);
     }
 
     @Post('get-assessment')

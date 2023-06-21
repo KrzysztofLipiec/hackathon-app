@@ -2,11 +2,11 @@ import { IProcessedSentimentAnalysisResponse } from './interfaces/IProcessedSent
 
 export class SentimentAnalysisResponseParserService {
     public process(response: string): IProcessedSentimentAnalysisResponse {
-        const [score, reason] = response.split('-');
+        const [score, reason, actions] = response.split('-');
         return {
             reason: reason.trim(),
             score: parseInt(score),
-            actions: 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+            actions: actions.trim(),
         };
     }
 }
