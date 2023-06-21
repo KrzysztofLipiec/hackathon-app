@@ -16,7 +16,7 @@ export class MongoDbService {
         return this.database.collection(collectionName.toString());
     }
 
-    public async addRecord(collectionName: string, name: string, value: string): Promise<void> {
+    public async addRecord(collectionName: string, name: string, value: any): Promise<void> {
         const collection = await this.getCollection(collectionName);
         const existing = await collection.findOne({ name });
         if (existing) {

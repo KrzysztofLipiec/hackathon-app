@@ -18,12 +18,11 @@ export class GptController {
 
     @Get('config')
     public async getConfig(@Query('workspace') workspace: string, @Query('name') name: string) {
-        console.log('workspace', workspace);
         return this.mongoDbService.getRecord(workspace, name);
     }
 
     @Post('config')
-    public async setConfig(@Body() { name, value, workspace }: { name: string, value: string, workspace: string }) {
+    public async setConfig(@Body() { name, value, workspace }: { name: string, value: any, workspace: string }) {
         return this.mongoDbService.addRecord(workspace, name, value);
     }
 
