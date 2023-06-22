@@ -8,7 +8,7 @@ export class AssessmentPrompt extends AbstractPrompt {
     }
 
     public generatePrompt({ user, items }: { user: string, items: AssessmentItem[] }): string {
-        const assessment = items.map((item) => {
+        const assessment = items.slice(-50).map((item) => {
             let result = this.getReviewLine(item) + '\n';
 
             if (item.updates.length > 0) {

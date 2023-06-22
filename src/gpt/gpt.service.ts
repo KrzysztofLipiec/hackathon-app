@@ -37,7 +37,7 @@ export class GptService {
         const prompt = (new AssessmentPrompt()).generatePrompt({ user, items });
         const completion = await this.openai.createCompletion(
             {
-                max_tokens: 10000,
+                max_tokens: 3000,
                 model: GptService.model,
                 prompt,
                 temperature: 1.1,
