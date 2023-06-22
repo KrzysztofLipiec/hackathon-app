@@ -6,7 +6,7 @@ export class SentimentAnalysisResponseParserService {
         return {
             reason: reason.trim(),
             score: parseInt(score),
-            actions: actions.trim(),
+            actions: (actions||"").trim(),
         };
     }
 }
