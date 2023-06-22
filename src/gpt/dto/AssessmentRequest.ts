@@ -1,4 +1,6 @@
+import { AssessmentItem } from './AssessmentItem';
+
 export interface AssessmentRequest {
-    user: string;
-    data: any;
+    user: {name: string};
+    items: AssessmentItem[];
 }

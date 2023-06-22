@@ -5,6 +5,7 @@ import { IProcessedSentimentAnalysisResponse } from './interfaces/IProcessedSent
 import { SentimentAnalysisPrompt } from './prompts/sentiment-analysis.prompt';
 import { AssessmentPrompt } from './prompts/assessment.prompt';
 import { AssessmentDataMapper } from './assessment-data-mapper';
+import { AssessmentItem } from './dto/AssessmentItem';
 
 @Injectable()
 export class GptService {
@@ -32,25 +33,23 @@ export class GptService {
         return this.sentimentAnalysisResponseParserService.process((completion.data.choices || [])[0].text || '');
     }
 
-    public async generateAssessment(user: string, data: any): Promise<string> {
-        const prompt = this.generateAssessmentPrompt(user, AssessmentDataMapper.map(data));
-        const completion = await this.openai.createCompletion(
-            {
-                max_tokens: 1000,
-                model: GptService.model,
-                prompt,
-                temperature: 1.1,
-            },
-        );
+    public async generateAssessment(user: string, items: AssessmentItem[]): Promise<string> {
+        const prompt = (new AssessmentPrompt()).generatePrompt({ user, items });
+        console.log(prompt);
+        // const completion = await this.openai.createCompletion(
+        //     {
+        //         max_tokens: 1000,
+        //         model: GptService.model,
+        //         prompt,
+        //         temperature: 1.1,
+        //     },
+        // );
 
-        return (completion.data.choices || [])[0].text || '';
+        // return (completion.data.choices || [])[0].text || '';
+        return 'lorem ipsum dolor sit amet';
     }
 
     private generatePrompt(review: string, updates: string[]) {
         return (new SentimentAnalysisPrompt()).generatePrompt({ review, updates });
-    }
-
-    public generateAssessmentPrompt(user: string, data: any) {
-        return (new AssessmentPrompt()).generatePrompt({ user, data });
     }
 }

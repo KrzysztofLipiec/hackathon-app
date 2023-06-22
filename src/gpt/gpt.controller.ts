@@ -34,7 +34,7 @@ export class GptController {
     @Post('get-assessment')
     @HandleGptError()
     public async generateAssessment(@Res() res, @Body() assessmentRequest: AssessmentRequest) {
-        const response = await this.gptService.generateAssessment(assessmentRequest.user, assessmentRequest.data);
+        const response = await this.gptService.generateAssessment(assessmentRequest.user.name, assessmentRequest.items);
         return res.status(200).json(response);
     }
 

@@ -1,12 +1,27 @@
 import { AbstractPrompt } from './abstract.prompt';
+import { AssessmentItem } from '../dto/AssessmentItem';
+import { MondayDocItemType } from '../dto/MondayDocItemType';
 
 export class AssessmentPrompt extends AbstractPrompt {
-    public generatePrompt({ user, data }: { user: string, data: any }): string {
-        const assessment = data.items_by_column_values.map(item => item.column_values.filter(it => it.id === 'text')[0].value)
+    private getReviewLine(item: AssessmentItem) {
+        return 'review: ' + item.columns.find(col => col.type === MondayDocItemType.REVIEW).value;
+    }
+
+    public generatePrompt({ user, items }: { user: string, items: AssessmentItem[] }): string {
+        const assessment = items.map((item) => {
+            let result = this.getReviewLine(item) + '\n';
+
+            if (item.updates.length > 0) {
+                result += 'conversation:\n';
+                result += item.updates.map(update => `- ${update.creatorName} wrote: ${update.textBody}`).join('\n') + '\n';
+            }
+
+            return result;
+        });
         return `
         Write an assessment review for our employee 
         ${user} based on the following data of issues solved by the employee. Here are the reviews from the clients:
-        ${assessment.map(a => `${a}\n`)} 
+        ${assessment.join('\n')}
         Please let me know how the employee is doing and if the employee is solving user's problems. Please give me a list of strengths and areas to improve and finish it off with a short summary.
         At the beginning please give me the information such as name of employee and today's date.
         Please give me the assessment in markdown format.
