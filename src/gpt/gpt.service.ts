@@ -35,18 +35,16 @@ export class GptService {
 
     public async generateAssessment(user: string, items: AssessmentItem[]): Promise<string> {
         const prompt = (new AssessmentPrompt()).generatePrompt({ user, items });
-        console.log(prompt);
-        // const completion = await this.openai.createCompletion(
-        //     {
-        //         max_tokens: 1000,
-        //         model: GptService.model,
-        //         prompt,
-        //         temperature: 1.1,
-        //     },
-        // );
+        const completion = await this.openai.createCompletion(
+            {
+                max_tokens: 10000,
+                model: GptService.model,
+                prompt,
+                temperature: 1.1,
+            },
+        );
 
-        // return (completion.data.choices || [])[0].text || '';
-        return 'lorem ipsum dolor sit amet';
+        return (completion.data.choices || [])[0].text || '';
     }
 
     private generatePrompt(review: string, updates: string[]) {
