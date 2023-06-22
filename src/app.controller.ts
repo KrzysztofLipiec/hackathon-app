@@ -4,4 +4,9 @@ import { Controller, Get, Post } from '@nestjs/common';
 export class AppController {
     constructor() {
     }
+
+    @Get()
+    public async get() {
+        return 'Hello World!';
+    }
 }

@@ -1,4 +1,5 @@
 import { Response } from 'express';
+import { Logger } from '@nestjs/common';
 
 class GptErrorHandling {
     public evaluate(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
@@ -8,6 +9,7 @@ class GptErrorHandling {
                 await ref.call(this, response, ...args);
             } catch (e) {
                 console.error(e);
+                Logger.error(e);
                 response.status(400).send('Can\'t correctly evaluate AI answer');
             }
         }
